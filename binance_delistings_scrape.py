@@ -41,20 +41,21 @@ def get_all_delisting_symbols(driver, retries: int=10) -> list:
                 # Example of line from spot trading announcement.
                 #text = "At 2023-12-29 02:00 (UTC): APE/BNB, APE/EUR, ARPA/ETH, BETA/ETH, CVX/BTC, ENS/BNB, EOS/EUR, ETC/EUR, KAVA/BNB, PAXG/BNB"
                 page_text = driver.find_element(By.TAG_NAME, 'body').text
-                
                 # Splitting page by indicator of when delisted pairs are named so that it doesnt get random sponsored/news
                 # pairs at top of page.
                 text = page_text.split("cease trading on the following spot trading pairs:")[-1]
                 # Compile the regex pattern and find all matches in the text
                 pattern = re.compile(r'\b[A-Z]{2,5}\/[A-Z]{2,5}\b')
                 symbols = pattern.findall(text)
+                # Appending symbols with the respective asset type indicator in parentheses.
+                symbols = [x+" (spot)" for x in symbols]
             
             if "margin-trading" in href:
                 page_text = driver.find_element(By.TAG_NAME, 'body').text
                 text = page_text.split("Binance Margin will delist the ")[-1]
                 pattern = re.compile(r'\b[A-Z]{2,5}\/[A-Z]{2,5}\b')
                 symbols = pattern.findall(text)
-                
+                symbols = [x+" (margin)" for x in symbols]
             
             all_delist_symbols.extend(symbols)
     
