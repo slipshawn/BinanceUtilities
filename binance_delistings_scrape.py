@@ -79,7 +79,7 @@ if __name__ == "__main__":
 
     # Wait for the page to load, you might need to adjust the time
     driver.implicitly_wait(10)
-    retries=8
+    retries = 8
     
     # Get all the delisting symbols
     all_delist_symbols = get_all_delisting_symbols(driver, retries)
