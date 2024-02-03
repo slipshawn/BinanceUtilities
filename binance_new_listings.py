@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Feb  3 14:31:32 2024
-
-Binance Delisting Checker.
-
-Scrapes the binance new listings anouncements page to get spot & margin trading pairs newly listed.
-
-@author: ander
-"""
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
