@@ -11,14 +11,14 @@ from datetime import datetime
 
 def get_link_hrefs(driver, retries: int=10) -> list:
     for _ in range(retries):
-            try:
-                # Attempt to find all <a> elements on the page and extract hrefs
-                links = driver.find_elements(By.TAG_NAME, 'a')
-                hrefs = [link.get_attribute('href') for link in links if link.get_attribute('href')]
-            except StaleElementReferenceException:
-                # Wait a bit for the page to stabilize
-                time.sleep(1)
-                continue  # Try finding the elements again
+        try:
+            # Attempt to find all <a> elements on the page and extract hrefs
+            links = driver.find_elements(By.TAG_NAME, 'a')
+            hrefs = [link.get_attribute('href') for link in links if link.get_attribute('href')]
+        except StaleElementReferenceException:
+            # Wait a bit for the page to stabilize
+            time.sleep(1)
+            continue  # Try finding the elements again
     return hrefs
 
 
