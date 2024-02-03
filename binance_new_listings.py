@@ -21,7 +21,6 @@ def get_link_hrefs(driver, retries: int=10) -> list:
     return hrefs
 
 
-
 def get_all_new_listing_symbols(driver, retries: int=10) -> list:
     hrefs = get_link_hrefs(driver, retries)
     all_new_list_symbols = []
@@ -72,7 +71,6 @@ def get_all_new_listing_symbols(driver, retries: int=10) -> list:
     return list(set(all_new_list_symbols))
 
 
-
 if __name__ == "__main__":
     # Storage directory
     directory =  os.environ['BINANCE_NEW_LISTINGS']
@@ -103,4 +101,3 @@ if __name__ == "__main__":
     
     # Close the driver
     driver.quit()
-
